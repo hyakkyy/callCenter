@@ -35,8 +35,9 @@ private:
     std::vector<call> m_calls;
     int index;
     call m_call;
-
     bool stop = false;
+
+    void save_call(call);
 };
 
 #endif // CLIENTMAINWINDOW_HPP

@@ -75,3 +75,15 @@ QDateTime &call::getEndCall()
 {
     return end_call;
 }
+
+void call::save(QDataStream &ost) const
+{
+    ost << name_called << num_called << city_called << name_calling << num_calling << city_calling
+        << start_call << end_call;
+}
+
+void call::load(QDataStream &ist)
+{
+    ist >> name_called >> num_called >> city_called >> name_calling >> num_calling >> city_calling
+        >> start_call >> end_call;
+}

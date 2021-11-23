@@ -22,6 +22,8 @@ public:
 private slots:
     void on_usersButton_clicked();
 
+    void on_callHistoryButton_clicked();
+
 private:
     void save_users();
 

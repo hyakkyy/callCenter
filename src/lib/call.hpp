@@ -24,6 +24,9 @@ public:
     QDateTime &getStartCall();
     void setEndCall(QDateTime);
     QDateTime &getEndCall();
+
+    void save(QDataStream &ost) const;
+    void load(QDataStream &ist);
 private:
     QString name_called;
     QString num_called;
@@ -33,6 +36,19 @@ private:
     QString city_calling;
     QDateTime start_call;
     QDateTime end_call;
+
 };
+
+inline QDataStream &operator<<(QDataStream &ost, const call &c)
+{
+    c.save(ost);
+    return ost;
+}
+
+inline QDataStream &operator>>(QDataStream &ist, call &c)
+{
+    c.load(ist);
+    return ist;
+}
 
 #endif // CALL_HPP

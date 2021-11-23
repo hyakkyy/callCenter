@@ -1,8 +1,10 @@
 #include <QSaveFile>
+#include <QMessageBox>
 
 #include "managermainwindow.hpp"
 #include "ui_managermainwindow.h"
 #include "users_table.hpp"
+#include "callhistory.hpp"
 
 managerMainWindow::managerMainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -51,5 +53,20 @@ void managerMainWindow::on_usersButton_clicked()
     ut.setUsers(&m_users);
     ut.exec();
     save_users();
+}
+
+
+void managerMainWindow::on_callHistoryButton_clicked()
+{
+    if (m_calls.empty())
+    {
+        QMessageBox::information(0, "Information", "Calls history is empty.");
+        return;
+    }
+    callhistory ch;
+    ch.setIndex(index);
+    ch.setCalls(m_calls);
+    ch.setRole(role);
+    ch.exec();
 }
 

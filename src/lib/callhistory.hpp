@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QStandardItemModel>
 #include "call.hpp"
+#include "user.hpp"
 
 namespace Ui {
 class callhistory;
@@ -19,13 +20,16 @@ public:
     void setRole(int);
     void setCalls(std::vector<call>);
     void setIndex(int);
+    void setUser(user);
     void addColumns();
     void addRowsForClient();
+    void addRowsForManager();
 
 private:
     Ui::callhistory *ui;
     QStandardItemModel *tbl;
     std::vector<call> m_calls;
+    user m_user;
     int role = 0;
     int index = 0;
 };

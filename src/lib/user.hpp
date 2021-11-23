@@ -25,7 +25,6 @@ public:
 
     void save(QDataStream &ost) const;
     void load(QDataStream &ist);
-
 private:
     QString name;
     QString password;

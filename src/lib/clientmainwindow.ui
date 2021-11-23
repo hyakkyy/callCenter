@@ -97,7 +97,7 @@
         <bool>false</bool>
        </property>
        <property name="displayFormat">
-        <string>mm:ss</string>
+        <string>HH:mm:ss</string>
        </property>
       </widget>
      </item>

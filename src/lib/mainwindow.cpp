@@ -16,28 +16,29 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     load_users();
+    load_calls();
 
-    //тестовый пользователь 1
-    user u1;
-    u1.setName("AlphaBank"); // ограничение в 26 сивмолов
-    u1.setPassword("alpha_top"); // пароль генерируется
-    u1.setNumber("+79509123456"); // обязательно через +7 и вместе с '+' 12 символов
-    u1.setInn("1234567899"); // 10 цифр
-    u1.setBankNum("12345678912345678999"); // 20 цифр
-    u1.setCity("Achinsk"); // 25 букв
-    u1.setRole(0); // 0 - клиент, 1 - менеджер, 2 - администратор
-    m_users.push_back(u1);
+//    //тестовый пользователь 1
+//    user u1;
+//    u1.setName("AlphaBank"); // ограничение в 26 сивмолов
+//    u1.setPassword("alpha_top"); // пароль генерируется
+//    u1.setNumber("+79509123456"); // обязательно через +7 и вместе с '+' 12 символов
+//    u1.setInn("1234567899"); // 10 цифр
+//    u1.setBankNum("12345678912345678999"); // 20 цифр
+//    u1.setCity("Achinsk"); // 25 букв
+//    u1.setRole(0); // 0 - клиент, 1 - менеджер, 2 - администратор
+//    m_users.push_back(u1);
 
-    //тестовый пользователь 2
-    user u2;
-    u2.setName("Sberbank"); // ограничение в 26 сивмолов
-    u2.setPassword("sber_pushka"); // вбивается пользователем
-    u2.setNumber("+79509654321"); // обязательно через +7 и вместе с '+' 12 символов
-    u2.setInn("9987654321"); // 10 цифр
-    u2.setBankNum("12345678999987654321"); // 20 цифр
-    u2.setCity("Krasnoyarsk"); // 25 букв
-    u2.setRole(1); // 0 - клиент, 1 - менеджер, 2 - администратор
-    m_users.push_back(u2);
+//    //тестовый пользователь 2
+//    user u2;
+//    u2.setName("Sberbank"); // ограничение в 26 сивмолов
+//    u2.setPassword("sber_pushka"); // вбивается пользователем
+//    u2.setNumber("+79509654321"); // обязательно через +7 и вместе с '+' 12 символов
+//    u2.setInn("9987654321"); // 10 цифр
+//    u2.setBankNum("12345678999987654321"); // 20 цифр
+//    u2.setCity("Krasnoyarsk"); // 25 букв
+//    u2.setRole(1); // 0 - клиент, 1 - менеджер, 2 - администратор
+//    m_users.push_back(u2);
 }
 
 MainWindow::~MainWindow()
@@ -48,7 +49,10 @@ MainWindow::~MainWindow()
 void MainWindow::save_user(user m_user_)
 {
     QSaveFile outf("users.tnb");
-    outf.open(QIODevice::Append);
+    if (m_users.size() == 0)
+        outf.open(QIODevice::WriteOnly);
+    else
+        outf.open(QIODevice::Append);
     QDataStream ost(&outf);
     ost << m_user_;
     outf.commit();
@@ -65,6 +69,20 @@ void MainWindow::load_users()
         user u;
         ist >> u;
         m_users.push_back(u);
+    }
+}
+
+void MainWindow::load_calls()
+{
+    QFile inf("calls.tnb");
+    inf.open(QIODevice::ReadOnly);
+    QDataStream ist(&inf);
+    m_calls.clear();
+    while (!ist.atEnd())
+    {
+        call c;
+        ist >> c;
+        m_calls.push_back(c);
     }
 }
 

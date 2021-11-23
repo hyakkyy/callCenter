@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QDateTime>
+#include <QFile>
 
 clientMainWindow::clientMainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -14,7 +15,13 @@ clientMainWindow::clientMainWindow(QWidget *parent) :
     ui->setupUi(this);
 }
 
-
+void clientMainWindow::save_call(call m_call_)
+{
+    QFile outf("calls.tnb");
+    outf.open(QIODevice::Append);
+    QDataStream out(&outf);
+    out << m_call_;
+}
 
 void clientMainWindow::setIndexUser(int index_)
 {
@@ -81,6 +88,7 @@ void clientMainWindow::on_endCallButton_clicked()
 {
     m_call.setEndCall(QDateTime::currentDateTime());
     m_calls.push_back(m_call);
+    save_call(m_call);
 
     stop = true;
     ui->startCallButton->setEnabled(true);
@@ -99,9 +107,7 @@ void clientMainWindow::on_callHistoryButton_clicked()
     callhistory ch;
     ch.setIndex(index);
     ch.setCalls(m_calls);
-    if (ch.exec())
-    {
-        return;
-    }
+    ch.setUser(m_users[index]);
+    ch.exec();
 }
 
