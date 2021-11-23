@@ -23,6 +23,8 @@ private slots:
     void on_usersButton_clicked();
 
 private:
+    void save_users();
+
     Ui::managerMainWindow *ui;
     std::vector<user> m_users;
     std::vector<call> m_calls;

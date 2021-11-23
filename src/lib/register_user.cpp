@@ -68,7 +68,7 @@ void register_user::accept()
     m_user->setCity(adres);
     m_user->setRole(0);
 
-    return QDialog::accept();;
+    return QDialog::accept();
 }
 
 register_user::~register_user()

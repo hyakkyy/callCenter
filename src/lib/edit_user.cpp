@@ -26,9 +26,13 @@ void edit_user::accept()
 {
     QString num = ui->numEdit->text();
     QString adress = ui->adressEdit->text();
+    QString name = ui->nameEdit->text();
 
+    m_user->setName(name);
     m_user->setNumber(num);
     m_user->setCity(adress);
+
+    return QDialog::accept();
 }
 
 edit_user::~edit_user()

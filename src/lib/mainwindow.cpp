@@ -48,7 +48,7 @@ MainWindow::~MainWindow()
 void MainWindow::save_user(user m_user_)
 {
     QSaveFile outf("users.tnb");
-    outf.open(QIODevice::WriteOnly);
+    outf.open(QIODevice::Append);
     QDataStream ost(&outf);
     ost << m_user_;
     outf.commit();
