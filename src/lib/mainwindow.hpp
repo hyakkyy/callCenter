@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <vector>
 #include "user.hpp"
+#include "call.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,10 +21,16 @@ public:
 private slots:
     void on_authButton_clicked();
 
+    void on_registerButton_clicked();
+
 private:
+    void load_users();
+    void save_user(user);
+
     int role = -1;
     int index = -1;
     Ui::MainWindow *ui;
     std::vector<user> m_users;
+    std::vector<call> m_calls;
 };
 #endif // MAINWINDOW_HPP

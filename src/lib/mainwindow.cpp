@@ -1,15 +1,21 @@
 #include <QMessageBox>
+#include <QFile>
+#include <QSaveFile>
 
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 #include "ui_authform.h"
 #include "clientmainwindow.hpp"
+#include "managermainwindow.hpp"
+#include "register_user.hpp"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    load_users();
 
     //тестовый пользователь 1
     user u1;
@@ -25,12 +31,12 @@ MainWindow::MainWindow(QWidget *parent)
     //тестовый пользователь 2
     user u2;
     u2.setName("Sberbank"); // ограничение в 26 сивмолов
-    u2.setPassword("sber_pushka"); // пароль генерируется
+    u2.setPassword("sber_pushka"); // вбивается пользователем
     u2.setNumber("+79509654321"); // обязательно через +7 и вместе с '+' 12 символов
     u2.setInn("9987654321"); // 10 цифр
     u2.setBankNum("12345678999987654321"); // 20 цифр
     u2.setCity("Krasnoyarsk"); // 25 букв
-    u2.setRole(0); // 0 - клиент, 1 - менеджер, 2 - администратор
+    u2.setRole(1); // 0 - клиент, 1 - менеджер, 2 - администратор
     m_users.push_back(u2);
 }
 
@@ -39,6 +45,28 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::save_user(user m_user_)
+{
+    QSaveFile outf("users.tnb");
+    outf.open(QIODevice::WriteOnly);
+    QDataStream ost(&outf);
+    ost << m_user_;
+    outf.commit();
+}
+
+void MainWindow::load_users()
+{
+    QFile inf("users.tnb");
+    inf.open(QIODevice::ReadOnly);
+    QDataStream ist(&inf);
+    m_users.clear();
+    while (!ist.atEnd())
+    {
+        user u;
+        ist >> u;
+        m_users.push_back(u);
+    }
+}
 
 void MainWindow::on_authButton_clicked()
 {
@@ -61,13 +89,20 @@ void MainWindow::on_authButton_clicked()
     }
     if (role > 0)
     {
-
+        QMessageBox::information(0, "Succeful", "You'r succeful authorisation.");
+        managerMainWindow *mmw = new managerMainWindow;
+        mmw->setUsers(m_users);
+        mmw->setCalls(m_calls);
+        mmw->setIndex(index);
+        mmw->show();
+        this->close();
     }
     else if (role == 0)
     {
         QMessageBox::information(0, "Succeful", "You'r succeful authorisation.");
         clientMainWindow *cmw = new clientMainWindow;
         cmw->setUsers(m_users);
+        cmw->setCalls(m_calls);
         cmw->setIndexUser(index);
         cmw->show();
         this->close();
@@ -76,5 +111,19 @@ void MainWindow::on_authButton_clicked()
     {
         QMessageBox::information(0, "Error", "User not finding.\nTry again.");
     }
+}
+
+
+void MainWindow::on_registerButton_clicked()
+{
+    user m_user;
+    register_user ru;
+    ru.setUser(&m_user);
+    if (ru.exec() != register_user::Accepted)
+    {
+        return;
+    }
+    save_user(m_user);
+    m_users.push_back(m_user);
 }
 

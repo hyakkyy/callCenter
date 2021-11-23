@@ -15,11 +15,17 @@ public:
     void setNumber(QString);
     QString &getNumber();
     void setInn(QString);
+    QString &getInn();
     void setBankNum(QString);
+    QString &getBankNum();
     void setCity(QString);
     QString &getCity();
     void setRole(int);
     int getRole();
+
+    void save(QDataStream &ost) const;
+    void load(QDataStream &ist);
+
 private:
     QString name;
     QString password;
@@ -29,5 +35,17 @@ private:
     QString city;
     int role;
 };
+
+inline QDataStream &operator<<(QDataStream &ost, const user &u)
+{
+    u.save(ost);
+    return ost;
+}
+
+inline QDataStream &operator>>(QDataStream &ist, user &u)
+{
+    u.load(ist);
+    return ist;
+}
 
 #endif // USER_HPP

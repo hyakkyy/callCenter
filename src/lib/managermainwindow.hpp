@@ -1,0 +1,34 @@
+#ifndef MANAGERMAINWINDOW_HPP
+#define MANAGERMAINWINDOW_HPP
+
+#include <QMainWindow>
+#include "user.hpp"
+#include "call.hpp"
+
+namespace Ui {
+class managerMainWindow;
+}
+
+class managerMainWindow : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    explicit managerMainWindow(QWidget *parent = nullptr);
+    ~managerMainWindow();
+    void setUsers(std::vector<user>);
+    void setCalls(std::vector<call>);
+    void setIndex(int);
+private slots:
+    void on_usersButton_clicked();
+
+private:
+    Ui::managerMainWindow *ui;
+    std::vector<user> m_users;
+    std::vector<call> m_calls;
+
+    int index;
+    int role;
+};
+
+#endif // MANAGERMAINWINDOW_HPP

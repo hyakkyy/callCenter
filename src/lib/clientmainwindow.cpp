@@ -14,10 +14,7 @@ clientMainWindow::clientMainWindow(QWidget *parent) :
     ui->setupUi(this);
 }
 
-void clientMainWindow::setUsers(std::vector<user> m_users_)
-{
-    m_users = m_users_;
-}
+
 
 void clientMainWindow::setIndexUser(int index_)
 {
@@ -51,6 +48,16 @@ void clientMainWindow::updateDisplayedValues()
         //time = time.addSecs(diff);
         ui->callTimeEdit->setTime(time);
     }
+}
+
+void clientMainWindow::setUsers(std::vector<user> m_users_)
+{
+    m_users = m_users_;
+}
+
+void clientMainWindow::setCalls(std::vector<call> m_calls_)
+{
+    m_calls = m_calls_;
 }
 
 void clientMainWindow::startCallButton()

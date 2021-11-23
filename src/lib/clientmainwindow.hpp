@@ -17,6 +17,7 @@ public:
     explicit clientMainWindow(QWidget *parent = nullptr);
     ~clientMainWindow();
     void setUsers(std::vector<user>);
+    void setCalls(std::vector<call>);
     void setIndexUser(int);
     void startCallTime();
 

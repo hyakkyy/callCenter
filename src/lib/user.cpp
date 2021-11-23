@@ -45,9 +45,19 @@ void user::setInn(QString inn_)
     inn = inn_;
 }
 
+QString &user::getInn()
+{
+    return inn;
+}
+
 void user::setBankNum(QString bank_num_)
 {
     bank_num = bank_num_;
+}
+
+QString &user::getBankNum()
+{
+    return bank_num;
 }
 
 void user::setCity(QString city_)
@@ -69,3 +79,17 @@ int user::getRole()
 {
     return role;
 }
+
+void user::save(QDataStream &ost) const
+{
+    ost << name << password << number << inn << bank_num << city << QString("%1").arg(role);
+}
+
+void user::load(QDataStream &ist)
+{
+    ist >> name >> password >> number >> inn >> bank_num >> city;
+    QString tmp;
+    ist >> tmp;
+    role = tmp.toInt();
+}
+
