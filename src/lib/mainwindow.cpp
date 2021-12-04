@@ -37,8 +37,19 @@ MainWindow::MainWindow(QWidget *parent)
 //    u2.setInn("9987654321"); // 10 цифр
 //    u2.setBankNum("12345678999987654321"); // 20 цифр
 //    u2.setCity("Krasnoyarsk"); // 25 букв
-//    u2.setRole(1); // 0 - клиент, 1 - менеджер, 2 - администратор
+//    u2.setRole(0); // 0 - клиент, 1 - менеджер, 2 - администратор
 //    m_users.push_back(u2);
+
+//    //тестовый пользователь 3
+//    user u3;
+//    u3.setName("CallCenterAdmin");
+//    u3.setBankNum("12345678911123456789"); // call center bank number
+//    u3.setCity("Krasnoyarsk"); // call center city
+//    u3.setInn("9876654321"); // call center inn
+//    u3.setNumber("+79509777777"); // call center number
+//    u3.setRole(2); // call center admin role
+//    u3.setPassword("adminCallCenter"); // default password for admin
+//    m_users.push_back(u3);
 }
 
 MainWindow::~MainWindow()
@@ -86,13 +97,13 @@ void MainWindow::load_calls()
     }
 }
 
-void MainWindow::on_authButton_clicked()
+void MainWindow::authorization()
 {
     QDialog *authForm = new QDialog;
     Ui::authForm ui_authform;
     ui_authform.setupUi(authForm);
-    if (authForm->exec() == authForm->Accepted)
-    {
+    if (authForm->exec() == QDialog::Accepted)
+    {        
         QString login = ui_authform.nameEdit->text();
         QString password = ui_authform.passwordEdit->text();
 
@@ -107,7 +118,7 @@ void MainWindow::on_authButton_clicked()
     }
     if (role > 0)
     {
-        QMessageBox::information(0, "Succeful", "You'r succeful authorisation.");
+        QMessageBox::information(0, "Call Center", "You'r succeful authorisation.");
         managerMainWindow *mmw = new managerMainWindow;
         mmw->setUsers(m_users);
         mmw->setCalls(m_calls);
@@ -117,7 +128,7 @@ void MainWindow::on_authButton_clicked()
     }
     else if (role == 0)
     {
-        QMessageBox::information(0, "Succeful", "You'r succeful authorisation.");
+        QMessageBox::information(0, "Call Center", "You'r succeful authorisation.");
         clientMainWindow *cmw = new clientMainWindow;
         cmw->setUsers(m_users);
         cmw->setCalls(m_calls);
@@ -127,12 +138,13 @@ void MainWindow::on_authButton_clicked()
     }
     else
     {
-        QMessageBox::information(0, "Error", "User not finding.\nTry again.");
+        QMessageBox::information(0, "Call Center", "User not finding.\nTry again.");
     }
+
 }
 
 
-void MainWindow::on_registerButton_clicked()
+void MainWindow::registration()
 {
     user m_user;
     register_user ru;

@@ -19,6 +19,10 @@ public:
     void setUsers(std::vector<user>);
     void setCalls(std::vector<call>);
     void setIndex(int);
+
+public slots:
+    void add_manager();
+    void delete_manager();
 private slots:
     void on_usersButton_clicked();
 

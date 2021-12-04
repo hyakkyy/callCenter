@@ -18,10 +18,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void on_authButton_clicked();
-
-    void on_registerButton_clicked();
+public slots:
+    void authorization();
+    void registration();
 
 private:
     void load_users();

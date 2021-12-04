@@ -38,13 +38,16 @@ void users_table::addRows()
 {
     for (size_t i = 0; i < m_users->size(); i++)
     {
-        QList<QStandardItem *> standardItemsList;
-        standardItemsList.append(new QStandardItem(m_users->at(i).getName()));
-        standardItemsList.append(new QStandardItem(m_users->at(i).getNumber()));
-        standardItemsList.append(new QStandardItem(m_users->at(i).getCity()));
-        standardItemsList.append(new QStandardItem(m_users->at(i).getBankNum()));
-        standardItemsList.append(new QStandardItem(m_users->at(i).getInn()));
-        tbl->insertRow(tbl->rowCount(), standardItemsList);
+        if (m_users->at(i).getRole() == 0)
+        {
+            QList<QStandardItem *> standardItemsList;
+            standardItemsList.append(new QStandardItem(m_users->at(i).getName()));
+            standardItemsList.append(new QStandardItem(m_users->at(i).getNumber()));
+            standardItemsList.append(new QStandardItem(m_users->at(i).getCity()));
+            standardItemsList.append(new QStandardItem(m_users->at(i).getBankNum()));
+            standardItemsList.append(new QStandardItem(m_users->at(i).getInn()));
+            tbl->insertRow(tbl->rowCount(), standardItemsList);
+        }
     }
 }
 

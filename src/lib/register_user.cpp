@@ -24,7 +24,7 @@ void register_user::accept()
     QString bank = ui->bankEdit->text();
     QString adres = ui->adresEdit->text();
 
-    if (name.size() > 20)
+    if (name.size() > 20 && !name.isEmpty())
     {
         QMessageBox::warning(0, "Call Center", "Size of company > 20");
         return;

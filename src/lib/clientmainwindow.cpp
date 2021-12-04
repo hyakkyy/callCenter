@@ -39,7 +39,7 @@ clientMainWindow::~clientMainWindow()
 void clientMainWindow::startCallTime()
 {
     auto updateTimer = new QTimer;
-    updateTimer->setInterval(1000);
+    updateTimer->setInterval(500);
     connect(updateTimer, SIGNAL(timeout()), this, SLOT(updateDisplayedValues()));
     updateTimer->start();
 }
@@ -49,10 +49,8 @@ void clientMainWindow::updateDisplayedValues()
     if (!stop)
     {
         QTime time = QTime::currentTime();
-        //int diff = time.msecsTo(m_call.getStartCall().time());
         time = time.addSecs(-60 * m_call.getStartCall().time().minute());
         time = time.addSecs(-1 * m_call.getStartCall().time().second());
-        //time = time.addSecs(diff);
         ui->callTimeEdit->setTime(time);
     }
 }

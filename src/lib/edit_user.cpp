@@ -1,3 +1,5 @@
+#include <QMessageBox>
+
 #include "edit_user.hpp"
 #include "ui_edit_user.h"
 
@@ -27,6 +29,24 @@ void edit_user::accept()
     QString num = ui->numEdit->text();
     QString adress = ui->adressEdit->text();
     QString name = ui->nameEdit->text();
+
+    if (name.size() > 20 && !name.isEmpty())
+    {
+        QMessageBox::warning(0, "Call Center", "Size of company > 20");
+        return;
+    }
+
+    if ( num.size() != 12 || (num[0] != '+') )
+    {
+        QMessageBox::warning(0, "Call Center", "Num should be size 12 and first symbols is +");
+        return;
+    }
+
+    if ( adress.size() > 30 )
+    {
+        QMessageBox::warning(0, "Call Center", "Adres should be <= 30");
+        return;
+    }
 
     m_user->setName(name);
     m_user->setNumber(num);

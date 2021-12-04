@@ -65,7 +65,15 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionAdd_Manager"/>
+    <addaction name="actionDelete_Manager"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -89,7 +97,54 @@
     <string>About</string>
    </property>
   </action>
+  <action name="actionAdd_Manager">
+   <property name="text">
+    <string>Add Manager</string>
+   </property>
+  </action>
+  <action name="actionDelete_Manager">
+   <property name="text">
+    <string>Delete Manager</string>
+   </property>
+  </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionAdd_Manager</sender>
+   <signal>triggered()</signal>
+   <receiver>managerMainWindow</receiver>
+   <slot>add_manager()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>120</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDelete_Manager</sender>
+   <signal>triggered()</signal>
+   <receiver>managerMainWindow</receiver>
+   <slot>delete_manager()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>120</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>add_manager()</slot>
+  <slot>delete_manager()</slot>
+ </slots>
 </ui>

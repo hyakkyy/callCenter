@@ -80,8 +80,6 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionImport_2"/>
-    <addaction name="actionExport"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -132,5 +130,42 @@
   </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>authButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>authorization()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>185</x>
+     <y>81</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>180</x>
+     <y>97</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>registerButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>registration()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>185</x>
+     <y>108</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>180</x>
+     <y>97</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>authorization()</slot>
+  <slot>registration()</slot>
+ </slots>
 </ui>
