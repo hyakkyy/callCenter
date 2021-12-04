@@ -63,14 +63,27 @@ void call::setStartCall(QDateTime start_)
 {
     start_call = start_;
 }
+
+void call::setStartCall(QString start_)
+{
+    start_call = QDateTime::fromString(start_, "dd MMM yyyy HH:mm:ss");
+}
+
 QDateTime &call::getStartCall()
 {
     return start_call;
 }
+
 void call::setEndCall(QDateTime end_)
 {
     end_call = end_;
 }
+
+void call::setEndCall(QString end_)
+{
+    end_call = QDateTime::fromString(end_, "dd MMM yyyy HH:mm:ss");
+}
+
 QDateTime &call::getEndCall()
 {
     return end_call;

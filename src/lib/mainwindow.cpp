@@ -40,16 +40,16 @@ MainWindow::MainWindow(QWidget *parent)
 //    u2.setRole(0); // 0 - клиент, 1 - менеджер, 2 - администратор
 //    m_users.push_back(u2);
 
-//    //тестовый пользователь 3
-//    user u3;
-//    u3.setName("CallCenterAdmin");
-//    u3.setBankNum("12345678911123456789"); // call center bank number
-//    u3.setCity("Krasnoyarsk"); // call center city
-//    u3.setInn("9876654321"); // call center inn
-//    u3.setNumber("+79509777777"); // call center number
-//    u3.setRole(2); // call center admin role
-//    u3.setPassword("adminCallCenter"); // default password for admin
-//    m_users.push_back(u3);
+    // администратор
+    user admin;
+    admin.setName("CallCenterAdmin");
+    admin.setBankNum("12345678911123456789"); // call center bank number
+    admin.setCity("Krasnoyarsk"); // call center city
+    admin.setInn("9876654321"); // call center inn
+    admin.setNumber("+79509777777"); // call center number
+    admin.setRole(2); // call center admin role
+    admin.setPassword("adminCallCenter"); // default password for admin
+    m_users.push_back(admin);
 }
 
 MainWindow::~MainWindow()
@@ -57,15 +57,16 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::save_user(user m_user_)
+void MainWindow::save_users()
 {
     QSaveFile outf("users.tnb");
-    if (m_users.size() == 0)
-        outf.open(QIODevice::WriteOnly);
-    else
-        outf.open(QIODevice::Append);
+    outf.open(QIODevice::WriteOnly);
     QDataStream ost(&outf);
-    ost << m_user_;
+    for (size_t i = 0; i < m_users.size(); i++)
+    {
+        if (m_users[i].getRole() != 2)
+            ost << m_users[i];
+    }
     outf.commit();
 }
 
@@ -153,7 +154,7 @@ void MainWindow::registration()
     {
         return;
     }
-    save_user(m_user);
     m_users.push_back(m_user);
+    save_users();
 }
 

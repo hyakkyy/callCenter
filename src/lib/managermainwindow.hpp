@@ -23,6 +23,11 @@ public:
 public slots:
     void add_manager();
     void delete_manager();
+    void exportUsersCSV();
+    void importUsersCSV();
+    void exportCallsCSV();
+    void importCallsCSV();
+
 private slots:
     void on_usersButton_clicked();
 

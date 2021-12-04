@@ -59,8 +59,8 @@ void callhistory::addRowsForClient()
                 standardItemsList.append(new QStandardItem(m_calls[i].getNameCalling()));
                 standardItemsList.append(new QStandardItem(m_calls[i].getNumCalling()));
                 standardItemsList.append(new QStandardItem(m_calls[i].getCityCalling()));
-                standardItemsList.append(new QStandardItem(m_calls[i].getStartCall().toString()));
-                standardItemsList.append(new QStandardItem(m_calls[i].getEndCall().toString()));
+                standardItemsList.append(new QStandardItem(m_calls[i].getStartCall().toString("dd MMM yyyy HH:mm:ss")));
+                standardItemsList.append(new QStandardItem(m_calls[i].getEndCall().toString("dd MMM yyyy HH:mm:ss")));
 
                 QTime time = m_calls[i].getEndCall().time();
                 time = time.addSecs(-60 * m_calls[i].getStartCall().time().minute());

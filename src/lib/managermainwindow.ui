@@ -54,8 +54,22 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionImport"/>
-    <addaction name="actionExport"/>
+    <widget class="QMenu" name="menuImport">
+     <property name="title">
+      <string>Import</string>
+     </property>
+     <addaction name="actionUsers"/>
+     <addaction name="actionCalls"/>
+    </widget>
+    <widget class="QMenu" name="menuExport">
+     <property name="title">
+      <string>Export</string>
+     </property>
+     <addaction name="actionUsers_2"/>
+     <addaction name="actionCalls_2"/>
+    </widget>
+    <addaction name="menuImport"/>
+    <addaction name="menuExport"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -77,16 +91,6 @@
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionImport">
-   <property name="text">
-    <string>Import</string>
-   </property>
-  </action>
-  <action name="actionExport">
-   <property name="text">
-    <string>Export</string>
-   </property>
-  </action>
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
@@ -105,6 +109,26 @@
   <action name="actionDelete_Manager">
    <property name="text">
     <string>Delete Manager</string>
+   </property>
+  </action>
+  <action name="actionUsers">
+   <property name="text">
+    <string>Import Users</string>
+   </property>
+  </action>
+  <action name="actionCalls">
+   <property name="text">
+    <string>Import Calls</string>
+   </property>
+  </action>
+  <action name="actionUsers_2">
+   <property name="text">
+    <string>Export Users</string>
+   </property>
+  </action>
+  <action name="actionCalls_2">
+   <property name="text">
+    <string>Export Calls</string>
    </property>
   </action>
  </widget>
@@ -142,9 +166,77 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionCalls</sender>
+   <signal>triggered()</signal>
+   <receiver>managerMainWindow</receiver>
+   <slot>importCallsCSV()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>120</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionUsers</sender>
+   <signal>triggered()</signal>
+   <receiver>managerMainWindow</receiver>
+   <slot>importUsersCSV()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>120</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCalls_2</sender>
+   <signal>triggered()</signal>
+   <receiver>managerMainWindow</receiver>
+   <slot>exportCallsCSV()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>120</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionUsers_2</sender>
+   <signal>triggered()</signal>
+   <receiver>managerMainWindow</receiver>
+   <slot>exportUsersCSV()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>120</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>add_manager()</slot>
   <slot>delete_manager()</slot>
+  <slot>exportUsersCSV()</slot>
+  <slot>importUsersCSV()</slot>
+  <slot>exportCallsCSV()</slot>
+  <slot>importCallsCSV()</slot>
  </slots>
 </ui>

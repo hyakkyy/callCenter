@@ -21,8 +21,10 @@ public:
     void setCityCalling(QString);
     QString &getCityCalling();
     void setStartCall(QDateTime);
+    void setStartCall(QString);
     QDateTime &getStartCall();
     void setEndCall(QDateTime);
+    void setEndCall(QString);
     QDateTime &getEndCall();
 
     void save(QDataStream &ost) const;
@@ -36,7 +38,6 @@ private:
     QString city_calling;
     QDateTime start_call;
     QDateTime end_call;
-
 };
 
 inline QDataStream &operator<<(QDataStream &ost, const call &c)

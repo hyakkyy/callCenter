@@ -25,7 +25,7 @@ public slots:
 private:
     void load_users();
     void load_calls();
-    void save_user(user);
+    void save_users();
 
     int role = -1;
     int index = -1;

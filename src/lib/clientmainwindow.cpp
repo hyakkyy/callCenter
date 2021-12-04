@@ -49,6 +49,7 @@ void clientMainWindow::updateDisplayedValues()
     if (!stop)
     {
         QTime time = QTime::currentTime();
+        time = time.addSecs(-3600 * m_call.getStartCall().time().hour());
         time = time.addSecs(-60 * m_call.getStartCall().time().minute());
         time = time.addSecs(-1 * m_call.getStartCall().time().second());
         ui->callTimeEdit->setTime(time);
