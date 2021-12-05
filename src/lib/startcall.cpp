@@ -2,6 +2,7 @@
 #include <QDateTime>
 #include "startcall.hpp"
 #include "ui_startcall.h"
+#include "config.hpp"
 
 startcall::startcall(QWidget *parent) :
     QDialog(parent),
@@ -45,7 +46,7 @@ void startcall::on_checkNum_clicked()
     }
     if (index_calling == -1)
     {
-        QMessageBox::warning(0, "Warning!", "Num not finded.");
+        QMessageBox::warning(0, config::applicationName, "Num not finded.");
     }
 }
 
@@ -53,7 +54,7 @@ void startcall::accept()
 {
     if (index_calling == -1)
     {
-        QMessageBox::warning(0, "Warning!", "Press a check button.");
+        QMessageBox::warning(0, config::applicationName, "Press a check button.");
         return;
     }
     m_call->setNameCalled(m_users[index_called].getName());

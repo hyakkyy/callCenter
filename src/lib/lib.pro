@@ -19,6 +19,7 @@ HEADERS += \
     call.hpp \
     callhistory.hpp \
     clientmainwindow.hpp \
+    config.hpp \
     edit_user.hpp \
     mainwindow.hpp \
     managermainwindow.hpp \

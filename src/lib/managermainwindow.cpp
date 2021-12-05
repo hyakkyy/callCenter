@@ -10,6 +10,7 @@
 #include "ui_managermainwindow.h"
 #include "users_table.hpp"
 #include "callhistory.hpp"
+#include "config.hpp"
 
 managerMainWindow::managerMainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -42,7 +43,7 @@ void managerMainWindow::setIndex(int index_)
 
 void managerMainWindow::save_users()
 {
-    QSaveFile outf("users.tnb");
+    QSaveFile outf(config::fileUsers);
     outf.open(QIODevice::WriteOnly);
     QDataStream ost(&outf);
     for (size_t i = 0; i < m_users.size(); i++)
@@ -91,11 +92,11 @@ void managerMainWindow::add_manager()
 
     user m_user;
     // Default value for this Call Center
-    m_user.setName(QString("Call Center Manager %1").arg(num_manager));
-    m_user.setBankNum("12345678911123456789"); // call center bank number
-    m_user.setCity("Krasnoyarsk"); // call center city
-    m_user.setInn("9876654321"); // call center inn
-    m_user.setNumber("+79509777777"); // call center number
+    m_user.setName(QString("%1 %2").arg(config::nameManagers).arg(num_manager));
+    m_user.setBankNum(config::bankNumCallCenter); // call center bank number
+    m_user.setCity(config::cityCallCenter); // call center city
+    m_user.setInn(config::innCallCenter); // call center inn
+    m_user.setNumber(config::numberCallCenter); // call center number
     m_user.setRole(1);
     m_user.setPassword(passwordEdit->text());
 
@@ -128,7 +129,7 @@ void managerMainWindow::delete_manager()
 
     if (cmbBox->count() == 0)
     {
-        QMessageBox::information(0, "Call Center", "Managers list is empty.");
+        QMessageBox::information(0, config::applicationName, "Managers list is empty.");
         return;
     }
 
@@ -162,7 +163,7 @@ void managerMainWindow::exportUsersCSV()
         if (m_users[i].getRole() == 2)
             continue;
         else if (m_users[i].getRole() == 1)
-            line = line + "Call Center Manager" + ";";
+            line = line + config::nameManagers + ";";
         else
             line = line + QString("%1").arg(m_users[i].getName()) + ";";
         line = line + QString("%1").arg(m_users[i].getPassword()) + ";";
@@ -204,10 +205,10 @@ void managerMainWindow::importUsersCSV()
             m_user.setInn(list[3]);
             m_user.setBankNum(list[4]);
             m_user.setCity(list[5]);
-            if (list[0] == "Call Center Manager")
+            if (list[0] == config::nameManagers)
             {
                 count_manager++;
-                m_user.setName(QString("%1 %2").arg(list[0]).arg(count_manager));
+                m_user.setName(QString("%1 %2").arg(config::nameManagers).arg(count_manager));
                 m_user.setRole(1);
             }
             else
@@ -294,7 +295,7 @@ void managerMainWindow::on_callHistoryButton_clicked()
 {
     if (m_calls.empty())
     {
-        QMessageBox::information(0, "Call Center", "Calls history is empty.");
+        QMessageBox::information(0, config::applicationName, "Calls history is empty.");
         return;
     }
     callhistory ch;
@@ -302,5 +303,10 @@ void managerMainWindow::on_callHistoryButton_clicked()
     ch.setCalls(m_calls);
     ch.setRole(role);
     ch.exec();
+}
+
+void managerMainWindow::exit()
+{
+    managerMainWindow::close();
 }
 

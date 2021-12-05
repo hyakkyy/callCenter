@@ -27,6 +27,7 @@ public slots:
     void importUsersCSV();
     void exportCallsCSV();
     void importCallsCSV();
+    void exit();
 
 private slots:
     void on_usersButton_clicked();

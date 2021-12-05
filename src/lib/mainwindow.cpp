@@ -8,6 +8,7 @@
 #include "clientmainwindow.hpp"
 #include "managermainwindow.hpp"
 #include "register_user.hpp"
+#include "config.hpp"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -42,13 +43,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     // администратор
     user admin;
-    admin.setName("CallCenterAdmin");
-    admin.setBankNum("12345678911123456789"); // call center bank number
-    admin.setCity("Krasnoyarsk"); // call center city
-    admin.setInn("9876654321"); // call center inn
-    admin.setNumber("+79509777777"); // call center number
+    admin.setName(config::nameAdmin);
+    admin.setBankNum(config::bankNumCallCenter); // call center bank number
+    admin.setCity(config::cityCallCenter); // call center city
+    admin.setInn(config::innCallCenter); // call center inn
+    admin.setNumber(config::numberCallCenter); // call center number
     admin.setRole(2); // call center admin role
-    admin.setPassword("adminCallCenter"); // default password for admin
+    admin.setPassword(config::passwordAdmin); // default password for admin
     m_users.push_back(admin);
 }
 
@@ -59,7 +60,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::save_users()
 {
-    QSaveFile outf("users.tnb");
+    QSaveFile outf(config::fileUsers);
     outf.open(QIODevice::WriteOnly);
     QDataStream ost(&outf);
     for (size_t i = 0; i < m_users.size(); i++)
@@ -72,7 +73,7 @@ void MainWindow::save_users()
 
 void MainWindow::load_users()
 {
-    QFile inf("users.tnb");
+    QFile inf(config::fileUsers);
     inf.open(QIODevice::ReadOnly);
     QDataStream ist(&inf);
     m_users.clear();
@@ -86,7 +87,7 @@ void MainWindow::load_users()
 
 void MainWindow::load_calls()
 {
-    QFile inf("calls.tnb");
+    QFile inf(config::fileCalls);
     inf.open(QIODevice::ReadOnly);
     QDataStream ist(&inf);
     m_calls.clear();
@@ -103,8 +104,10 @@ void MainWindow::authorization()
     QDialog *authForm = new QDialog;
     Ui::authForm ui_authform;
     ui_authform.setupUi(authForm);
+    bool try_auth = false;
     if (authForm->exec() == QDialog::Accepted)
     {        
+        try_auth = true;
         QString login = ui_authform.nameEdit->text();
         QString password = ui_authform.passwordEdit->text();
 
@@ -116,30 +119,36 @@ void MainWindow::authorization()
                 index = i;
             }
         }
+
     }
-    if (role > 0)
+
+    if (try_auth)
     {
-        QMessageBox::information(0, "Call Center", "You'r succeful authorisation.");
-        managerMainWindow *mmw = new managerMainWindow;
-        mmw->setUsers(m_users);
-        mmw->setCalls(m_calls);
-        mmw->setIndex(index);
-        mmw->show();
-        this->close();
-    }
-    else if (role == 0)
-    {
-        QMessageBox::information(0, "Call Center", "You'r succeful authorisation.");
-        clientMainWindow *cmw = new clientMainWindow;
-        cmw->setUsers(m_users);
-        cmw->setCalls(m_calls);
-        cmw->setIndexUser(index);
-        cmw->show();
-        this->close();
-    }
-    else
-    {
-        QMessageBox::information(0, "Call Center", "User not finding.\nTry again.");
+        if (role > 0)
+        {
+            QMessageBox::information(0, config::applicationName, "You'r succeful authorisation.");
+            managerMainWindow *mmw = new managerMainWindow;
+            mmw->setUsers(m_users);
+            mmw->setCalls(m_calls);
+            mmw->setIndex(index);
+            mmw->show();
+            this->close();
+        }
+        else if (role == 0)
+        {
+            QMessageBox::information(0, config::applicationName, "You'r succeful authorisation.");
+            clientMainWindow *cmw = new clientMainWindow;
+            cmw->setUsers(m_users);
+            cmw->setCalls(m_calls);
+            cmw->setIndexUser(index);
+            cmw->show();
+            this->close();
+        }
+        else
+        {
+            QMessageBox::information(0, config::applicationName, "User not finding.\nTry again.");
+            authorization();
+        }
     }
 
 }
@@ -156,5 +165,25 @@ void MainWindow::registration()
     }
     m_users.push_back(m_user);
     save_users();
+}
+
+void MainWindow::about()
+{
+    QMessageBox about(this);
+    about.setIcon(QMessageBox::Information);
+    about.setWindowTitle(QString("About %1").arg("Call Center"));
+    about.setText(QString("%1<br>"
+        "Author: <a href=\"mailto:cergeu912@gmail.com\">Leushkin Vladislav Olegovich</a><br>"
+        "Github: <a href=\"https://github.com/hyakkyy/callCenter\">https://github.com/hyakkyy/callCenter</a><br>"
+        "Icons by <a href=\"http://tango.freedesktop.org/"
+        "Tango_Desktop_Project\">The Tango! Desktop Project</a><br>"
+        "Version %1: %2<br> Version QT: %3")
+                  .arg(config::applicationName).arg(config::applicationVersion).arg(qVersion()));
+    about.exec();
+}
+
+void MainWindow::exit()
+{
+    MainWindow::close();
 }
 

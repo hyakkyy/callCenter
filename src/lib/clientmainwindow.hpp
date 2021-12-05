@@ -21,6 +21,9 @@ public:
     void setIndexUser(int);
     void startCallTime();
 
+public slots:
+    void exit();
+
 private slots:
     void startCallButton();
     void updateDisplayedValues();

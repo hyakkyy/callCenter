@@ -21,6 +21,8 @@ public:
 public slots:
     void authorization();
     void registration();
+    void about();
+    void exit();
 
 private:
     void load_users();

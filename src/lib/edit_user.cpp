@@ -2,6 +2,7 @@
 
 #include "edit_user.hpp"
 #include "ui_edit_user.h"
+#include "config.hpp"
 
 edit_user::edit_user(QWidget *parent) :
     QDialog(parent),
@@ -32,19 +33,19 @@ void edit_user::accept()
 
     if (name.size() > 20 && !name.isEmpty())
     {
-        QMessageBox::warning(0, "Call Center", "Size of company > 20");
+        QMessageBox::warning(0, config::applicationName, "Size of company > 20");
         return;
     }
 
     if ( num.size() != 12 || (num[0] != '+') )
     {
-        QMessageBox::warning(0, "Call Center", "Num should be size 12 and first symbols is +");
+        QMessageBox::warning(0, config::applicationName, "Num should be size 12 and first symbols is +");
         return;
     }
 
     if ( adress.size() > 30 )
     {
-        QMessageBox::warning(0, "Call Center", "Adres should be <= 30");
+        QMessageBox::warning(0, config::applicationName, "Adres should be <= 30");
         return;
     }
 

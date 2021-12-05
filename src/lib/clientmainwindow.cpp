@@ -2,6 +2,7 @@
 #include "ui_clientmainwindow.h"
 #include "startcall.hpp"
 #include "callhistory.hpp"
+#include "config.hpp"
 
 #include <QMessageBox>
 #include <QTimer>
@@ -17,7 +18,7 @@ clientMainWindow::clientMainWindow(QWidget *parent) :
 
 void clientMainWindow::save_call(call m_call_)
 {
-    QFile outf("calls.tnb");
+    QFile outf(config::fileCalls);
     outf.open(QIODevice::Append);
     QDataStream out(&outf);
     out << m_call_;
@@ -110,3 +111,7 @@ void clientMainWindow::on_callHistoryButton_clicked()
     ch.exec();
 }
 
+void clientMainWindow::exit()
+{
+    clientMainWindow::close();
+}
