@@ -16,10 +16,16 @@ class register_user : public QDialog
 public:
     explicit register_user(QWidget *parent = nullptr);
     ~register_user();
+    void setName(QString);
+    void setPassword(QString);
+    void setNumber(QString);
+    void setInn(QString);
+    void setBankNum(QString);
+    void setCity(QString);
     void setUser(user*);
 
 public slots:
-    void accept();
+    void accept() Q_DECL_OVERRIDE;;
 
 private:
     user *m_user;

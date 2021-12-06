@@ -31,7 +31,7 @@ void edit_user::accept()
     QString adress = ui->adressEdit->text();
     QString name = ui->nameEdit->text();
 
-    if (name.size() > 20 && !name.isEmpty())
+    if (name.size() > 20 || !name.isEmpty())
     {
         QMessageBox::warning(0, config::applicationName, "Size of company > 20");
         return;

@@ -11,6 +11,36 @@ register_user::register_user(QWidget *parent) :
     ui->setupUi(this);
 }
 
+void register_user::setName(QString m_name_)
+{
+    ui->nameEdit->setText(m_name_);
+}
+
+void register_user::setPassword(QString m_password_)
+{
+    ui->passwordEdit->setText(m_password_);
+}
+
+void register_user::setNumber(QString m_number_)
+{
+    ui->numEdit->setText(m_number_);
+}
+
+void register_user::setInn(QString m_inn_)
+{
+    ui->innEdit->setText(m_inn_);
+}
+
+void register_user::setBankNum(QString m_banknum_)
+{
+    ui->bankEdit->setText(m_banknum_);
+}
+
+void register_user::setCity(QString m_city_)
+{
+    ui->adresEdit->setText(m_city_);
+}
+
 void register_user::setUser(user *m_user_)
 {
     m_user = m_user_;
@@ -23,9 +53,9 @@ void register_user::accept()
     QString num = ui->numEdit->text();
     QString inn = ui->innEdit->text();
     QString bank = ui->bankEdit->text();
-    QString adres = ui->adresEdit->text();
+    QString adress = ui->adresEdit->text();
 
-    if (name.size() > 20 && !name.isEmpty())
+    if (name.size() > 20 || name.isEmpty())
     {
         QMessageBox::warning(0, config::applicationName, "Size of company > 20");
         return;
@@ -75,7 +105,7 @@ void register_user::accept()
         return;
     }
 
-    if ( adres.size() > 30 )
+    if ( adress.size() > 30  || adress.isEmpty())
     {
         QMessageBox::warning(0, config::applicationName, "Address should be <= 30");
         return;
@@ -86,7 +116,7 @@ void register_user::accept()
     m_user->setNumber(num);
     m_user->setBankNum(bank);
     m_user->setInn(inn);
-    m_user->setCity(adres);
+    m_user->setCity(adress);
     m_user->setRole(0);
 
     return QDialog::accept();

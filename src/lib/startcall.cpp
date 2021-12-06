@@ -35,6 +35,12 @@ void startcall::on_checkNum_clicked()
 {
     QString num = ui->numClient->text();
 
+    if (num == m_users[index_called].getNumber())
+    {
+        QMessageBox::warning(0, config::applicationName, "Calling yourself is prohibited.");
+        return;
+    }
+
     for (size_t i = 0; i < m_users.size(); i++)
     {
         if (m_users[i].getNumber() == num)
@@ -44,6 +50,7 @@ void startcall::on_checkNum_clicked()
             index_calling = i;
         }
     }
+
     if (index_calling == -1)
     {
         QMessageBox::warning(0, config::applicationName, "Num not finded.");
