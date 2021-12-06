@@ -65,6 +65,11 @@ void register_user::accept()
         QMessageBox::warning(0, config::applicationName, "This company name is prohibited");
         return;
     }
+    else if ( name.contains(config::nameManagers, Qt::CaseSensitive) )
+    {
+        QMessageBox::warning(0, config::applicationName, "This company name is prohibited");
+        return;
+    }
 
     if ( (password.size() > 24) || (password.size() < 8) )
     {
