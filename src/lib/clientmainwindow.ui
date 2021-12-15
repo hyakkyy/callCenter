@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>330</width>
-    <height>273</height>
+    <height>276</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,8 +43,11 @@
        <property name="enabled">
         <bool>false</bool>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
-        <string>End call</string>
+        <string>Завершить вызов</string>
        </property>
       </widget>
      </item>
@@ -103,8 +106,11 @@
      </item>
      <item row="6" column="0" colspan="2">
       <widget class="QPushButton" name="startCallButton">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
-        <string>Start call</string>
+        <string>Начать вызов</string>
        </property>
       </widget>
      </item>
@@ -133,7 +139,7 @@
         <bool>true</bool>
        </property>
        <property name="text">
-        <string>Call history</string>
+        <string>История звонков</string>
        </property>
       </widget>
      </item>
