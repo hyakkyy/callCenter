@@ -101,7 +101,7 @@ void clientMainWindow::on_callHistoryButton_clicked()
 {
     if (m_calls.empty())
     {
-        QMessageBox::information(0, "Information", "Calls history is empty.");
+        QMessageBox::information(0, "Information", "У вас нет истории звонков.");
         return;
     }
     callhistory ch;

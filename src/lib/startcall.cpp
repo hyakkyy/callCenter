@@ -37,7 +37,7 @@ void startcall::on_checkNum_clicked()
 
     if (num == m_users[index_called].getNumber())
     {
-        QMessageBox::warning(0, config::applicationName, "Calling yourself is prohibited.");
+        QMessageBox::warning(0, config::applicationName, "Вы не можете звонить себе.");
         return;
     }
 
@@ -53,7 +53,7 @@ void startcall::on_checkNum_clicked()
 
     if (index_calling == -1)
     {
-        QMessageBox::warning(0, config::applicationName, "Num not finded.");
+        QMessageBox::warning(0, config::applicationName, "Телефон не найден.");
     }
 }
 

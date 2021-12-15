@@ -57,62 +57,62 @@ void register_user::accept()
 
     if (name.size() > 20 || name.isEmpty())
     {
-        QMessageBox::warning(0, config::applicationName, "Size of company > 20");
+        QMessageBox::warning(0, config::applicationName, "Название компании должно состоять не больше чем из 20 элементов");
         return;
     }
     else if (name == config::nameAdmin)
     {
-        QMessageBox::warning(0, config::applicationName, "This company name is prohibited");
+        QMessageBox::warning(0, config::applicationName, "Эта компания уже внесена в базу данных");
         return;
     }
     else if ( name.contains(config::nameManagers, Qt::CaseSensitive) )
     {
-        QMessageBox::warning(0, config::applicationName, "This company name is prohibited");
+        QMessageBox::warning(0, config::applicationName, "Эта компания уже внесена в базу данных");
         return;
     }
 
     if ( (password.size() > 24) || (password.size() < 8) )
     {
-        QMessageBox::warning(0, config::applicationName, "Size password < 8 && > 24");
+        QMessageBox::warning(0, config::applicationName, "Пароль должен быть не больше 24 элеметов и не меньше 8");
         return;
     }
 
     if ( num.size() != 12 || (num[0] != '+') )
     {
-        QMessageBox::warning(0, config::applicationName, "Num should be size 12 and first symbols is +");
+        QMessageBox::warning(0, config::applicationName, "Код страны записывается полностью");
         return;
     }
     else if (num == config::numberCallCenter)
     {
-        QMessageBox::warning(0, config::applicationName, "This number is prohibited");
+        QMessageBox::warning(0, config::applicationName, "Этот номер уже есть в базе дынных");
         return;
     }
 
     if ( inn.size() != 10 )
     {
-        QMessageBox::warning(0, config::applicationName, "Num should be size 10");
+        QMessageBox::warning(0, config::applicationName, "ИНН должен состоять из 10 цифр");
         return;
     }
     else if (inn == config::innCallCenter)
     {
-        QMessageBox::warning(0, config::applicationName, "This INN is prohibited");
+        QMessageBox::warning(0, config::applicationName, "Этот ИНН уже есть в базе данных");
         return;
     }
 
     if ( bank.size() != 20 )
     {
-        QMessageBox::warning(0, config::applicationName, "Num should be size 10");
+        QMessageBox::warning(0, config::applicationName, "Банковский счет сосотоит из 20 цифр");
         return;
     }
     else if (bank == config::bankNumCallCenter)
     {
-        QMessageBox::warning(0, config::applicationName, "This Bank Num is prohibited");
+        QMessageBox::warning(0, config::applicationName, "Банковский счет уже внесен в базу данных");
         return;
     }
 
     if ( adress.size() > 30  || adress.isEmpty())
     {
-        QMessageBox::warning(0, config::applicationName, "Address should be <= 30");
+        QMessageBox::warning(0, config::applicationName, "Слишком длинный адрес");
         return;
     }
 

@@ -39,6 +39,16 @@ void managerMainWindow::setIndex(int index_)
     index = index_;
 
     role = m_users[index].getRole();
+
+    if(role==1)
+    {
+        ui->actionAdd_Manager->setEnabled(false);
+        ui->actionDelete_Manager->setEnabled(false);
+        ui->actionCalls_2->setEnabled(false);
+        ui->actionCalls->setEnabled(false);
+        ui->actionUsers->setEnabled(false);
+        ui->actionUsers_2->setEnabled(false);
+    }
 }
 
 void managerMainWindow::save_users()
@@ -295,7 +305,7 @@ void managerMainWindow::on_callHistoryButton_clicked()
 {
     if (m_calls.empty())
     {
-        QMessageBox::information(0, config::applicationName, "Calls history is empty.");
+        QMessageBox::information(0, config::applicationName, "У вас нет истории звонков.");
         return;
     }
     callhistory ch;

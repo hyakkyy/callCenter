@@ -31,21 +31,21 @@ void edit_user::accept()
     QString adress = ui->adressEdit->text();
     QString name = ui->nameEdit->text();
 
-    if (name.size() > 20 || !name.isEmpty())
+    if (name.size() > 20 || name.isEmpty())
     {
-        QMessageBox::warning(0, config::applicationName, "Size of company > 20");
+        QMessageBox::warning(0, config::applicationName, "Название компании должно состоять не больше чем из 20 элементов");
         return;
     }
 
     if ( num.size() != 12 || (num[0] != '+') )
     {
-        QMessageBox::warning(0, config::applicationName, "Num should be size 12 and first symbols is +");
+        QMessageBox::warning(0, config::applicationName, "Код страны записывается полностью");
         return;
     }
 
     if ( adress.size() > 30 )
     {
-        QMessageBox::warning(0, config::applicationName, "Adres should be <= 30");
+        QMessageBox::warning(0, config::applicationName, "Слишком длинный адрес");
         return;
     }
 
