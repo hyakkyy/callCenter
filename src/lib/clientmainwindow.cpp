@@ -115,3 +115,9 @@ void clientMainWindow::exit()
 {
     clientMainWindow::close();
 }
+
+void clientMainWindow::on_actionBack_triggered()
+{
+
+}
+

@@ -126,7 +126,7 @@ void MainWindow::authorization()
     {
         if (role > 0)
         {
-            QMessageBox::information(0, config::applicationName, "You'r succeful authorisation.");
+            QMessageBox::information(0, config::applicationName, "Authorization successful.");
             managerMainWindow *mmw = new managerMainWindow;
             mmw->setUsers(m_users);
             mmw->setCalls(m_calls);
@@ -136,7 +136,7 @@ void MainWindow::authorization()
         }
         else if (role == 0)
         {
-            QMessageBox::information(0, config::applicationName, "You'r succeful authorisation.");
+            QMessageBox::information(0, config::applicationName, "Authorization successful.");
             clientMainWindow *cmw = new clientMainWindow;
             cmw->setUsers(m_users);
             cmw->setCalls(m_calls);
@@ -146,7 +146,7 @@ void MainWindow::authorization()
         }
         else
         {
-            QMessageBox::information(0, config::applicationName, "User not finding.\nTry again.");
+            QMessageBox::information(0, config::applicationName, "User not found.\nTry again.");
             authorization();
         }
     }

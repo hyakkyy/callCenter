@@ -36,6 +36,8 @@ private slots:
 
     void on_callHistoryButton_clicked();
 
+    void on_actionBack_triggered();
+
 private:
     Ui::clientMainWindow *ui;
     std::vector<user> m_users;
