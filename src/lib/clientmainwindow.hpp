@@ -48,5 +48,4 @@ private:
 
     void save_call(call);
 };
-
 #endif // CLIENTMAINWINDOW_HPP
