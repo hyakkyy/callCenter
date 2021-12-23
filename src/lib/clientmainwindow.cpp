@@ -96,7 +96,6 @@ void clientMainWindow::on_endCallButton_clicked()
     //ui->callTimeEdit->setTime(QTime::)
 }
 
-
 void clientMainWindow::on_callHistoryButton_clicked()
 {
     if (m_calls.empty())
