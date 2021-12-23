@@ -1,6 +1,9 @@
+/*!
+ * \file
+ * \brief Заголовочный файл класса Startcall
+ */
 #ifndef STARTCALL_HPP
 #define STARTCALL_HPP
-
 #include <QDialog>
 #include "user.hpp"
 #include "call.hpp"

@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Заголовочный файл класса Call
+ */
 #ifndef CALL_HPP
 #define CALL_HPP
 #include <QString>

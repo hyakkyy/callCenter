@@ -1,6 +1,9 @@
+/*!
+ * \file
+ * \brief Заголовочный файл класса Users_table
+ */
 #ifndef USERS_TABLE_HPP
 #define USERS_TABLE_HPP
-
 #include <QDialog>
 #include <QStandardItemModel>
 #include "user.hpp"

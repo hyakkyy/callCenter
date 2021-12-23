@@ -1,8 +1,10 @@
+/*!
+ * \file
+ * \brief Заголовочный файл класса Register_user
+ */
 #ifndef REGISTER_USER_HPP
 #define REGISTER_USER_HPP
-
 #include <QDialog>
-
 #include "user.hpp"
 
 namespace Ui {

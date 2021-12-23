@@ -1,6 +1,9 @@
+/*!
+ * \file
+ * \brief Заголовочный файл класса Managermainwindow
+ */
 #ifndef MANAGERMAINWINDOW_HPP
 #define MANAGERMAINWINDOW_HPP
-
 #include <QMainWindow>
 #include "user.hpp"
 #include "call.hpp"

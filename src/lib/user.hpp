@@ -1,6 +1,9 @@
+/*!
+ * \file
+ * \brief Заголовочный файл класса user
+ */
 #ifndef USER_HPP
 #define USER_HPP
-
 #include <QString>
 
 class user

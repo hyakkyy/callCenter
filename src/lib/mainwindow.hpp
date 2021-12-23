@@ -1,6 +1,9 @@
+/*!
+ * \file
+ * \brief Заголовочный файл класса Mainwindow
+ */
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
-
 #include <QMainWindow>
 #include <vector>
 #include "user.hpp"

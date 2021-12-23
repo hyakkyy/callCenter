@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Заголовочный файл класса Edit_user
+ */
 #ifndef EDIT_USER_HPP
 #define EDIT_USER_HPP
 

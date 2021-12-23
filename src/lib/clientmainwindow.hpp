@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Заголовочный файл класса Clientmainwindow
+ */
 #ifndef CLIENTMAINWINDOW_HPP
 #define CLIENTMAINWINDOW_HPP
 

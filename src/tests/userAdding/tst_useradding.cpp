@@ -38,7 +38,7 @@ void userAdding::cleanupTestCase()
 {
     m_dlg.reset();
 }
-
+//пустые поля
 void userAdding::test_nullInputUser_data()
 {
     QTest::addColumn<QString>("name");
@@ -88,7 +88,8 @@ void userAdding::test_nullInputUser()
     m_dlg->accept();
     QVERIFY2(spy.count() == 0, "Incorrect (NULL value) user accepted");
 }
-
+//end
+//правильность ввода
 void userAdding::test_correctInputUser_data()
 {
     QTest::addColumn<QString>("name");
@@ -142,7 +143,8 @@ void userAdding::test_correctInputUser()
     m_dlg->accept();
     QVERIFY2(spy.count() == 0, "Incorrect (NULL value) user accepted");
 }
-
+//end
+//Уникальность ввода данных
 void userAdding::test_prohibitedInputUser_data()
 {
     QTest::addColumn<QString>("name");

@@ -1,6 +1,9 @@
+/*!
+ * \file
+ * \brief Заголовочный файл класса CallHistory
+ */
 #ifndef CALLHISTORY_HPP
 #define CALLHISTORY_HPP
-
 #include <QDialog>
 #include <QStandardItemModel>
 #include "call.hpp"
