@@ -1,7 +1,6 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QSaveFile>
-
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 #include "ui_authform.h"
